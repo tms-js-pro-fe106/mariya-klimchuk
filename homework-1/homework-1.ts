@@ -148,13 +148,15 @@ const users: User[] = [
         }
     ]
 
+    //     2.1. Создать строку из имен пользователей через запятую
+
     function getUsersName(users: User[]): string {
-        const names: string[] = users.map(user => user.name);
-        return names.join(', ');
-        
+       return users.map((user) => user.name).join(",")  
     }
-    const namesString: string = getUsersName(users);
-    console.log(namesString);
+
+    console.log(getUsersName(users));
+
+    //     2.2. Посчитать общее количнство машин у пользователей
 
     function getAllCars(users: User[]): number {
         const allCars: string[] = [];
@@ -164,10 +166,35 @@ const users: User[] = [
                 allCars.push(...user.cars);
             }
         }
-    
         return allCars.length;
     }
+    console.log(getAllCars(users));
+
+    //     2.3. Создать функцию, которая бы принимала массив пользователей и отфильтровывала пользователей на наличие образования
+
+    function getUsersEducation(users: User[]): User[] {
+        return users.filter(user => user.hasEducation)
+    }
+    console.log(getUsersEducation(users));
+
     
-    const numCars: number = getAllCars(users);
-    console.log(numCars);
-    
+//     2.4. Создать функцию, которая бы принимала массив пользователей и отфильтровывала пользователей на наличие животных
+
+function getUsersAnimals(users : User[]) : User[] {
+    return users.filter(user => user.animals)
+}
+
+console.log(getUsersAnimals(users));
+
+//     2.5. Создать функцию, которая бы принимала массив пользователей и отдавала бы  строку с названиями марок автомобилей через запятую*
+
+function getUsersBranCars(users: User[]): string {
+    return users
+    .filter((user) => user.cars && user.cars.length > 0)
+    .map((user) => user.cars.join(", "))
+    .join(", ");
+}
+
+console.log(getUsersBranCars(users));
+
+  
